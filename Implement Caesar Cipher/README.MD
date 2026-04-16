@@ -40,7 +40,7 @@ This project is a modern, intuitive desktop utility that allows users to encrypt
 ## 📂 Installation & Usage
 
 ### Method 1: Run from Source Code
-1. **Install Python:** Ensure **Python 3.11** is installed. (You can use the provided [`python-3.11.9-amd64.exe`]() installer; ensure "Add Python to PATH" is checked during setup).
+1. **Install Python:** Ensure **Python 3.11** is installed. (You can use the provided [`python-3.11.9-amd64.exe`](https://github.com/BugHunterJunior/Prodigy-CyberSecurity-Internship/releases/download/PRODIGY_CS_01/python-3.11.9-amd64.exe) installer; ensure "Add Python to PATH" is checked during setup).
 2. **Install Dependencies:** Open your terminal and install the required libraries:
 ```bash
 pip install pywebview pythonnet
@@ -52,7 +52,7 @@ py -3.11 app.py
 
 ### Method 2: Standalone Executable (Recommended)
 *No Python installation required.*
-1. Download [`Cipher.exe`]() from the repository files.
+1. Download [`Cipher.exe`](https://github.com/BugHunterJunior/Prodigy-CyberSecurity-Internship/releases/download/PRODIGY_CS_01/Cipher.exe) from the repository files.
 2. Double-click to launch the application instantly.
 
 
