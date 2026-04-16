@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caesar Cipher</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <div class="bg-animations">
+            <div class="bg-circle bg-circle-1"></div>
+            <div class="bg-circle bg-circle-2"></div>
+            <div class="bg-circle bg-circle-3"></div>
+        </div>
+
+        <div class="grid-overlay"></div>
+
+        <div class="content">
+            <div class="header">
+                <div class="header-title">
+                    <span class="sparkle">✨</span>
+                    <h1>Caesar Cipher</h1>
+                    <span class="sparkle">✨</span>
+                </div>
+                <p class="subtitle">Simple and secure encryption algorithm</p>
+            </div>
+
+            <div class="main-card">
+                <div class="mode-toggle">
+                    <div class="mode-buttons">
+                        <button class="mode-btn active" id="encryptBtn" onclick="setMode('encrypt')">
+                            🔒 Encrypt 
+                        </button>
+                        <button class="mode-btn" id="decryptBtn" onclick="setMode('decrypt')">
+                            🔓 Decrypt
+                        </button>
+                    </div>
+                </div>
+
+                <div class="io-grid">
+                    <div class="io-section">
+                        <label class="io-label" id="inputLabel">
+                            🔒 Plain Text
+                        </label>
+                        <textarea 
+                            id="inputText" 
+                            placeholder="Enter the text you want to encrypt..."
+                        ></textarea>
+                    </div>
+
+                    <div class="io-section">
+                        <label class="io-label" id="outputLabel">
+                            🔓 Encrypted Text
+                        </label>
+                        <div class="output-wrapper">
+                            <textarea 
+                                id="outputText" 
+                                readonly 
+                                placeholder="The result will appear here..."
+                            ></textarea>
+                            <button class="copy-btn" id="copyBtn" onclick="copyToClipboard()" style="display: none;">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <div class="key-input-wrapper">
+                        <label class="key-label">
+                            🔑 Key (Shift)
+                        </label>
+                        <input 
+                            type="number" 
+                            id="keyInput" 
+                            placeholder="1-30" 
+                            min="1" 
+                            max="30"
+                        />
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="process-btn" id="processBtn" onclick="processText()">
+                            🔒 Encrypt 
+                        </button>
+                        <button class="swap-btn" onclick="swapMode()">
+                            ⇄
+                        </button>
+                    </div>
+                </div>
+
+                <div class="info-box">
+                    <h3 class="info-title">
+                        <span>✨</span>
+                        About Caesar Cipher
+                    </h3>
+                    <p class="info-text">
+                        The Caesar cipher shifts each letter in the alphabet by a fixed number.
+                        For example, with a shift of 3, A becomes D and B becomes E.<br>
+                        It is one of the oldest and simplest encryption techniques.
+                        Use the same key to decrypt the message.
+                    </p>
+                </div>
+            </div>
+
+            <div class="footer">
+                <p>Secure communication using a classic encryption algorithm</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global state
+        let currentMode = 'encrypt';
+        const uzbekAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ'_.,";
+        const alphabetLength = uzbekAlphabet.length;
+
+        // Caesar cipher encryption
+        function caesarEncrypt(text, shift) {
+            let result = '';
+            
+            for (let i = 0; i < text.length; i++) {
+                const char = text[i];
+                const upperChar = char.toUpperCase();
+                const index = uzbekAlphabet.indexOf(upperChar);
+                
+                if (index !== -1) {
+                    const newIndex = (index + shift) % alphabetLength;
+                    const newChar = uzbekAlphabet[newIndex];
+                    
+                    if (char === char.toLowerCase() && char !== upperChar) {
+                        result += newChar.toLowerCase();
+                    } else {
+                        result += newChar;
+                    }
+                } else {
+                    result += char;
+                }
+            }
+            
+            return result;
+        }
+
+        // Caesar cipher decryption
+        function caesarDecrypt(text, shift) {
+            return caesarEncrypt(text, alphabetLength - shift);
+        }
+
+        // Set mode
+        function setMode(mode) {
+            currentMode = mode;
+            const encryptBtn = document.getElementById('encryptBtn');
+            const decryptBtn = document.getElementById('decryptBtn');
+            const inputLabel = document.getElementById('inputLabel');
+            const outputLabel = document.getElementById('outputLabel');
+            const processBtn = document.getElementById('processBtn');
+            const inputText = document.getElementById('inputText');
+            const outputText = document.getElementById('outputText');
+
+            if (mode === 'encrypt') {
+                encryptBtn.classList.add('active');
+                decryptBtn.classList.remove('active');
+                inputLabel.innerHTML = '🔒 Plain Text';
+                outputLabel.innerHTML = '🔓 Encrypted Text';
+                processBtn.innerHTML = '🔒 Encrypt';
+                inputText.placeholder = "Shifrlamoqchi bo'lgan matningizni kiriting...";
+            } else {
+                encryptBtn.classList.remove('active');
+                decryptBtn.classList.add('active');
+                inputLabel.innerHTML = '🔓 Encrypted Text';
+                outputLabel.innerHTML = '🔒 Plain Text';
+                processBtn.innerHTML = '🔓 Decrypt';
+                inputText.placeholder = "Deshifrlamoqchi bo'lgan matningizni kiriting...";
+            }
+
+            // Clear texts
+            inputText.value = '';
+            outputText.value = '';
+            document.getElementById('copyBtn').style.display = 'none';
+        }
+
+        // Process text (encrypt or decrypt)
+        function processText() {
+            const inputText = document.getElementById('inputText').value;
+            const keyValue = parseInt(document.getElementById('keyInput').value) || 0;
+            const outputText = document.getElementById('outputText');
+            const copyBtn = document.getElementById('copyBtn');
+
+            if (!inputText) {
+                alert('Please enter text!');
+                return;
+            }
+
+            if (keyValue < 1 || keyValue > alphabetLength) {
+                return;
+            }
+
+            const normalizedShift = ((keyValue % alphabetLength) + alphabetLength) % alphabetLength;
+
+            if (currentMode === 'encrypt') {
+                outputText.value = caesarEncrypt(inputText, normalizedShift);
+            } else {
+                outputText.value = caesarDecrypt(inputText, normalizedShift);
+            }
+
+            copyBtn.style.display = 'block';
+        }
+
+        // Swap mode
+        function swapMode() {
+            const inputText = document.getElementById('inputText');
+            const outputText = document.getElementById('outputText');
+            
+            const temp = inputText.value;
+            inputText.value = outputText.value;
+            outputText.value = temp;
+
+            currentMode = currentMode === 'encrypt' ? 'decrypt' : 'encrypt';
+            const encryptBtn = document.getElementById('encryptBtn');
+            const decryptBtn = document.getElementById('decryptBtn');
+            const inputLabel = document.getElementById('inputLabel');
+            const outputLabel = document.getElementById('outputLabel');
+            const processBtn = document.getElementById('processBtn');
+
+            if (currentMode === 'encrypt') {
+                encryptBtn.classList.add('active');
+                decryptBtn.classList.remove('active');
+                inputLabel.innerHTML = '🔒 Plain Text';
+                outputLabel.innerHTML = '🔓 Encrypted Text';
+                processBtn.innerHTML = '🔒 Encrypt ';
+            } else {
+                encryptBtn.classList.remove('active');
+                decryptBtn.classList.add('active');
+                inputLabel.innerHTML = '🔓 Encrypted Text';
+                outputLabel.innerHTML = '🔒 Plain Text';
+                processBtn.innerHTML = '🔓 Decrypt';
+            }
+        }
+
+        // Copy to clipboard
+        function copyToClipboard() {
+            const outputText = document.getElementById('outputText');
+            const copyBtn = document.getElementById('copyBtn');
+
+            try {
+                navigator.clipboard.writeText(outputText.value).then(() => {
+                    copyBtn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+                    setTimeout(() => {
+                        copyBtn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
+                    }, 2000);
+                });
+            } catch (err) {
+                // Fallback
+                outputText.select();
+                document.execCommand('copy');
+                copyBtn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+                setTimeout(() => {
+                    copyBtn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>';
+                }, 2000);
+            }
+        }
+
+        // Validate key input
+        document.getElementById('keyInput').addEventListener('input', function(e) {
+            const value = parseInt(e.target.value);
+            if (value > alphabetLength) {
+                e.target.value = alphabetLength;
+            } else if (value < 1 && e.target.value !== '') {
+                e.target.value = 1;
+            }
+        });
+
+        // Allow Enter key to process
+        document.getElementById('inputText').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && e.ctrlKey) {
+                processText();
+            }
+        });
+
+        document.getElementById('keyInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                processText();
+            }
+        });
+    </script>
+</body>
+</html>
