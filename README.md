@@ -27,19 +27,14 @@ Focused on practical security tasks, real-world scenarios, and strengthening off
 
 ---
 
+### 🛠️ Workspace Activity
+<a href="https://github.com/BugHunterJunior"><img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=500&size=16&pause=1000&color=00FF00&background=0D1117&center=false&vCenter=false&width=600&lines=>+root@bughunter:~#+initializing+repository...;>+root@bughunter:~#+loading+tasks...;>+root@bughunter:~#+status:+active" alt="Typing SVG" /></a>
+
 ## 📂 Tasks
 - `[01]` **Implement Caesar Cipher** 
 - `[02]` **Task Name 2** 
 - `[03]` **Task Name 3**   
 - `[04]` **Task Name 4**  
-
----
-
-## 🛠️ Tools & Technologies
-- Kali Linux  
-- Python  
-- Networking Concepts  
-- Security Tools (as per tasks)  
 
 ---
 
