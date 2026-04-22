@@ -66,14 +66,11 @@ cd Prodigy-CyberSecurity-Internship
 
 ---
 
-## 👨‍💻 Author
-**Prathmesh Kshirsagar** (`BugHunterJunior`)  
-
-- 🔗 GitHub: https://github.com/BugHunterJunior  
-- 🔗 LinkedIn: https://www.linkedin.com/in/prathmesh-kshirsagar-tech/  
+ ### 👨‍💻 Author
+**Prathmesh** (`BugHunterJunior`)
+- **GitHub:** [@BugHunterJunior](https://github.com/BugHunterJunior)
+- **LinkedIn:** [Prathmesh Kshirsagar](https://www.linkedin.com/in/prathmesh-kshirsagar-tech/) 
 
 ---
 
-<div align="center">
-  
-</div> 
+
