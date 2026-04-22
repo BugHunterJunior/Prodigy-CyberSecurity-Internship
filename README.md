@@ -1,6 +1,6 @@
 <div align="center">
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:000000,100:222222&height=180&section=header&text=Prodigy%20InfoTech%20Internship&fontSize=50&fontColor=00FF00&animation=fadeIn&desc=Cyber%20Security%20Internship&descSize=20&descAlignY=75&descAlign=50" alt="Prodigy Banner" />
-
+<img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=28&duration=3000&pause=1000&color=00FF00&center=true&vCenter=true&width=600&lines=Implement+Caesar+Cipher;Password+Complexity+Checker;Simple+Keylogger;Network+Packet+Analyzer" />
 
 <b>⚡ Learn • Build • Break • Secure</b>
 
