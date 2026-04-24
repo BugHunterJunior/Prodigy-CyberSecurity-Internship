@@ -106,7 +106,7 @@ def check_password(password):
     if re.search(r"[0-9]", password): score += 1
     else: feedback.append("Add numbers")
 
-    if re.search(r"[!@#$%^&*(),.?\":{}|<>]", password): score += 1
+    if re.search(r"[!@#$%^&*()_,.?\":{}|<>]", password): score += 1
     else: feedback.append("Add special characters")
 
     return score, feedback
