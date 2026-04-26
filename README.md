@@ -32,7 +32,7 @@ Focused on practical security tasks, real-world scenarios, and strengthening off
 
 ## 📂 Tasks
 - `[01]` **Implement Caesar Cipher** 
-- `[02]` **Task Name 2** 
+- `[02]` **Password Complexity Checker** 
 - `[03]` **Task Name 3**   
 - `[04]` **Task Name 4**  
 
